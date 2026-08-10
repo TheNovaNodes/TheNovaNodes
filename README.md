@@ -2,6 +2,8 @@
 
 **Bridging the gap between Large Language Models and real-world infrastructure.**
 
+As an integral part of the Antigravity Agent Ecosystem, TheNovaNodes provides the foundational tools and integrations necessary to empower autonomous agents and advanced AI systems.
+
 ---
 
 ## Our Mission
