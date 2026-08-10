@@ -19,30 +19,32 @@
 
 Our architecture is divided into three distinct layers, functioning together as a complete IT department:
 
-### 1. The Brain (Google Jules Cloud Armada) 🧠
-The core workforce of our ecosystem. Instead of running constrained local models, we utilize an armada of **Google Jules** cloud instances. These agents operate in isolated cloud sandboxes, taking on massive parallel engineering tasks, refactoring code, and opening Pull Requests autonomously. 
+### 1. The Orchestrator (Telegram Tech Lead) 🤖
+**[`antigravity-telegram-agent`](https://github.com/TheNovaNodes/antigravity-telegram-agent)**
+The Nerve Center. A local Python-based Antigravity Telegram Bot that acts as the Project Manager. It manages dispatching, PTY streaming, Multi-Account Hot Reloading, and async communication between human architects and the cloud agents.
 
-### 2. The Orchestrator (Telegram Tech Lead) 🤖
-A local Python-based Antigravity Telegram Bot (`antigravity-telegram-agent`) acts as the Project Manager. It manages the Jules Cloud Armada, pushing API mandates, monitoring session statuses asynchronously, and delivering push notifications directly to the developer's smartphone when cloud agents finish their tasks.
+### 2. The Cloud Workers (Google Jules Armada) ☁️
+**[`google-jules-mcp`](https://github.com/TheNovaNodes/google-jules-mcp)**
+The core workforce. Instead of running constrained local models, we utilize an armada of Google Jules cloud instances. These agents operate in isolated cloud sandboxes, taking on massive parallel engineering tasks and opening Pull Requests autonomously.
 
-### 3. The Sensory Gateways (MCP Servers) 🚪
-To give our cloud agents access to private data without compromising security, we build specialized **MCP Gateways** exposed securely via **Cloudflare Tunnels** (Zero-Trust architecture):
-- **Semantic Memory**: AnythingLLM MCP gateway allowing Jules to read enterprise architecture decisions.
-- **Enterprise CRM**: Nextcloud MCP gateway allowing agents to track tickets and read private specs.
-- **Web Intelligence**: SearXNG MCP gateway providing uncensored, private web search directly to the agents.
+### 3. The MCP Matrix (Sensory & Control Gateways) 🚪
+To give our cloud agents access to private data without compromising security, we build specialized MCP Gateways divided into **Data Plane** (Gateways) and **Control Plane** (Controls). They are exposed securely via **Cloudflare Tunnels** (Zero-Trust architecture).
 
 ---
 
-## 🌟 Core Components
+## 🌟 The MCP Matrix Registry
 
-### [nova-anythingllm-mcp](https://github.com/TheNovaNodes/nova-anythingllm-mcp)
-**AnythingLLM MCP Gateway** — The Long-Term Memory. Provides vector+lexical hybrid search across our knowledge corpus. 
+### 🧠 Semantic Memory (AnythingLLM)
+*   **[`anythingllm-mcp-gateway`](https://github.com/TheNovaNodes/anythingllm-mcp-gateway)** — Data Plane. Connects LLMs to our internal knowledge base (vector+lexical hybrid search) for enterprise-grade retrieval.
+*   **[`anythingllm-mcp-control`](https://github.com/TheNovaNodes/anythingllm-mcp-control)** — Control Plane. Manages AnythingLLM workspaces, threads, and configurations.
 
-### [nova-searxng-mcp](https://github.com/TheNovaNodes/nova-searxng-mcp)
-**SearXNG MCP Gateway** — The Eyes. Privacy-focused web search across 90+ engines, allowing cloud agents to research modern libraries (e.g., React 19) in real-time.
+### 👁️ Web Intelligence (SearXNG)
+*   **[`searxng-mcp-gateway`](https://github.com/TheNovaNodes/searxng-mcp-gateway)** — Data Plane. Privacy-focused web search across 90+ engines, allowing cloud agents to research modern libraries in real-time.
+*   **[`searxng-mcp-control`](https://github.com/TheNovaNodes/searxng-mcp-control)** — Control Plane. Administers the SearXNG meta-search engine settings.
 
-### [antigravity-telegram-agent](https://github.com/TheNovaNodes/antigravity-telegram-agent)
-**The Tech Lead Bot** — The Nerve Center. Handles dispatching, monitoring, and async communication between human architects and the Jules Armada.
+### 🏢 Enterprise CRM (Nextcloud)
+*   **[`nextcloud-mcp-gateway`](https://github.com/TheNovaNodes/nextcloud-mcp-gateway)** — Data Plane. Allows agents to access WebDAV, Files, Notes, and User Cloud Storage to read private specs and CRM tickets.
+*   **[`nextcloud-mcp-control`](https://github.com/TheNovaNodes/nextcloud-mcp-control)** — Control Plane. Manages users, permissions, and administrative functions in Nextcloud.
 
 ---
 
