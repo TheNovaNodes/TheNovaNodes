@@ -104,3 +104,11 @@ TheNovaNodes prioritizes secure access models. Our MCP gateways are designed to 
 - **Modularity:** High. You can use any module independently.
 - **Maturity:** The data plane MCP gateways are verified for production usage; complex orchestrated workflows are experimental.
 - **Limitations:** Certain control plane modules require elevated privileges to the underlying services (e.g., Nextcloud admin credentials), so careful deployment is required.
+
+---
+
+## Support TheNovaNodes
+
+If this modular agent infrastructure is useful to you, you can support its open-source development.
+
+**USDT (TRC20):** `TQvw8MJMdSBFXu5G74JsZm1gzg7cuXBZ2o`
