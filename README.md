@@ -1,3 +1,13 @@
+---
+module_type: Organization Profile
+status: Active
+protocol: N/A
+primary_capability: Organizational manifest and onboarding guide
+requires: N/A
+works_with: Google Antigravity, Telegram Agent, MCP Servers
+last_verified: 2026-08-21
+---
+
 # TheNovaNodes 🌌
 
 ## What is TheNovaNodes?
