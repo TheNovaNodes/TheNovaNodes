@@ -48,6 +48,9 @@ flowchart TD
             N_G[nextcloud-mcp-gateway]
             N_C[nextcloud-mcp-control]
         end
+        subgraph Security
+            PR_R[mcp-gh-pr-reviewer]
+        end
         Vault[agent-vault]
     end
 ```
@@ -61,6 +64,7 @@ flowchart TD
 | **Semantic Memory** | anythingllm-mcp-gateway | anythingllm-mcp-control |
 | **Web Intelligence** | searxng-mcp-gateway | searxng-mcp-control |
 | **CRM & Storage** | nextcloud-mcp-gateway | nextcloud-mcp-control |
+| **Security & Auditing** | mcp-gh-pr-reviewer | *N/A* |
 
 ---
 
@@ -97,6 +101,9 @@ TheNovaNodes prioritizes secure access models. Our MCP gateways are designed to 
 ### Enterprise CRM
 - **[nextcloud-mcp-gateway](https://github.com/TheNovaNodes/nextcloud-mcp-gateway)**: Allows agents to read WebDAV, files, and notes.
 - **[nextcloud-mcp-control](https://github.com/TheNovaNodes/nextcloud-mcp-control)**: Manages Nextcloud users and permissions.
+
+### Security & Auditing
+- **[mcp-gh-pr-reviewer](https://github.com/TheNovaNodes/mcp-gh-pr-reviewer)**: Universal Fallback MCP Server for automated GitHub Pull Request security reviews.
 
 ---
 
