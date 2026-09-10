@@ -69,6 +69,10 @@ flowchart TD
     end
 ```
 
+<p align="center">
+  <img src=".github/assets/thenovanodes-modules.png" alt="TheNovaNodes Architecture Modules Showcase" width="100%" />
+</p>
+
 ---
 
 ## Capability Matrix
