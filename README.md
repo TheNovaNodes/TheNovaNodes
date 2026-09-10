@@ -10,6 +10,10 @@ last_verified: 2026-08-26
 
 # TheNovaNodes 🌌
 
+<p align="center">
+  <img src=".github/assets/thenovanodes-hero.png" alt="TheNovaNodes — Modular AI Agent Infrastructure" width="100%" />
+</p>
+
 ## What is TheNovaNodes?
 TheNovaNodes is a modular upgrade layer for AI agent systems. It provides independent capabilities through the Model Context Protocol (MCP), HTTP, CLI, and compatible APIs to augment your existing agentic workflows.
 
