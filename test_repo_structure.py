@@ -11,3 +11,9 @@ def test_contributing_exists():
 
 def test_license_exists():
     assert os.path.exists('LICENSE'), "LICENSE does not exist"
+
+def test_security_exists():
+    assert os.path.exists('SECURITY.md'), "SECURITY.md does not exist"
+
+def test_gitattributes_exists():
+    assert os.path.exists('.gitattributes'), ".gitattributes does not exist"
