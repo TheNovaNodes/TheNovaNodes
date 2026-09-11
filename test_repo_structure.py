@@ -8,3 +8,6 @@ def test_agents_exists():
 
 def test_contributing_exists():
     assert os.path.exists('CONTRIBUTING.md'), "CONTRIBUTING.md does not exist"
+
+def test_license_exists():
+    assert os.path.exists('LICENSE'), "LICENSE does not exist"
