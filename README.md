@@ -4,8 +4,8 @@ status: Active
 protocol: N/A
 primary_capability: Organizational manifest and onboarding guide
 requires: N/A
-works_with: Google Antigravity, Telegram Agent, MCP Servers
-last_verified: 2026-08-26
+works_with: Google Antigravity, Telegram Agent, MCP Servers, Go Runtime
+last_verified: 2026-09-01
 ---
 
 # TheNovaNodes 🌌
@@ -15,40 +15,47 @@ last_verified: 2026-08-26
 </p>
 
 ## What is TheNovaNodes?
-TheNovaNodes is a modular upgrade layer for AI agent systems. It provides independent capabilities through the Model Context Protocol (MCP), HTTP, CLI, and compatible APIs to augment your existing agentic workflows.
+TheNovaNodes is a modular upgrade layer and infrastructure suite for AI agent systems. It provides independent capabilities through the Model Context Protocol (MCP), HTTP, CLI, and high-performance native engines (Go / Python) to augment your existing agentic workflows.
 
 ## What problem does the modular layer solve?
-Instead of a monolithic, one-size-fits-all solution, TheNovaNodes allows developers to selectively integrate individual tools, gateways, and controls into their existing setups. It decouples the orchestrator, cloud workers, and tools so you can build exactly what you need without being locked into a single ecosystem.
+Instead of a monolithic, one-size-fits-all solution, TheNovaNodes allows developers to selectively integrate individual tools, gateways, and control planes into their existing setups. It decouples orchestrators, high-speed routing engines, cloud workers, and storage layers so you can build scalable, resilient agent networks without vendor lock-in.
 
 ## Which capabilities are available?
-We offer modular capabilities across different domains:
-- **Semantic Memory**: Hybrid search and knowledge retrieval.
-- **Web Intelligence**: Privacy-focused meta-search access.
-- **Enterprise CRM/Storage**: Access to cloud files, notes, and user data.
-- **Orchestration & Workers**: Reference orchestrators and specific cloud agent workers.
+We offer modular capabilities across key infrastructure domains:
+- **Routing & Access Control**: Unified MCP Router and multiplexer with strict ACL enforcement (`mcp-router`).
+- **Orchestration & High-Speed Engines**: Native Go agent runtimes (`antigravity-go-tg-bot-agent`), Telegram PTY interfaces, and consensus gates (`google-jules-stitch-gate`).
+- **Semantic Memory**: Hybrid search and vector knowledge retrieval via AnythingLLM gateways.
+- **Web Intelligence**: Privacy-focused meta-search and research access via SearXNG.
+- **Enterprise CRM, Mail & Storage**: Full WebDAV, IMAP/CardDAV, and cloud file integration (Nextcloud & Mail.ru MCPs).
+- **Security & Secret Vaults**: Zero-trust credential isolation using `agent-vault` and automated PR security reviewers (`mcp-gh-pr-reviewer`).
 
 ## How can a user start with one module?
-Through our **"Choose Your Upgrade"** onboarding, you can adopt just a single repository. For instance, if you only need web search for your AI, you can spin up the `searxng-mcp-gateway` and connect it to your preferred orchestrator without adopting the rest of the stack.
+Through our **"Choose Your Upgrade"** onboarding, you can adopt just a single repository. For instance, if you only need web search for your AI, you can spin up `searxng-mcp-gateway` and connect it to your preferred orchestrator without adopting the rest of the stack.
 
 ## What is verified today and what remains experimental?
-- **Verified**: Individual MCP gateways (Data Plane) and Controls (Control Plane) are verified for use in local and tunneled environments.
-- **Experimental**: Complex multi-agent orchestration, fully decoupled autonomous workflows, and multi-layered worker architectures remain in experimental stages.
+- **Verified**: Individual Data Plane MCP gateways, Control Plane modules, `agent-vault`, and `mcp-router` ACL implementations are verified for production and local usage.
+- **Experimental**: Multi-agent consensus clustering (`google-jules-stitch-gate`), cross-domain autonomous agent loops, and multi-layered worker architectures remain in active evolution.
 
 ---
 
 ## Architecture
 
-TheNovaNodes uses a modular topology. The Antigravity Telegram Agent is provided as a reference orchestrator (not a mandatory core) and Google Jules as one worker integration (not the only possible worker).
+TheNovaNodes uses a decoupled, topology-agnostic architecture. High-performance agent runtimes communicate with workers and the MCP Matrix through the `mcp-router` and isolated secret daemon (`agent-vault`).
 
 ```mermaid
 flowchart TD
-    Orch[Orchestrator\n(e.g., antigravity-telegram-agent, or custom)]
-    Worker[Cloud Workers\n(e.g., google-jules-mcp, or others)]
+    Orch[Orchestrator / Engine\n(e.g., antigravity-go-tg-bot-agent)]
+    Router[mcp-router\n(Unified Multiplexer & ACL)]
+    Worker[Cloud Workers\n(e.g., google-jules-mcp)]
+    Gate[google-jules-stitch-gate\n(Consensus Cluster)]
+
+    Orch <--> Router
+    Worker <--> Router
+    Orch <--> Gate
     
-    Orch <--> Worker
-    Worker <--> MCP[MCP Matrix]
-    Orch <--> MCP
-    
+    Router <--> Vault[agent-vault\n(Secrets & Credentials)]
+    Router <--> MCP[MCP Matrix]
+
     subgraph MCP Matrix
         subgraph Memory
             A_G[anythingllm-mcp-gateway]
@@ -58,14 +65,14 @@ flowchart TD
             S_G[searxng-mcp-gateway]
             S_C[searxng-mcp-control]
         end
-        subgraph CRM
+        subgraph Enterprise & Mail
             N_G[nextcloud-mcp-gateway]
             N_C[nextcloud-mcp-control]
+            M_S[mailru-mcp-server]
         end
         subgraph Security
             PR_R[mcp-gh-pr-reviewer]
         end
-        Vault[agent-vault]
     end
 ```
 
@@ -77,36 +84,48 @@ flowchart TD
 
 ## Capability Matrix
 
-| Domain | Data Plane (Read/Gateway) | Control Plane (Write/Admin) |
+| Domain | Data Plane (Read / Gateway) | Control Plane (Write / Admin / Routing) |
 |---|---|---|
+| **Routing & ACL** | mcp-router | mcp-router |
 | **Semantic Memory** | anythingllm-mcp-gateway | anythingllm-mcp-control |
 | **Web Intelligence** | searxng-mcp-gateway | searxng-mcp-control |
-| **CRM & Storage** | nextcloud-mcp-gateway | nextcloud-mcp-control |
-| **Security & Auditing** | mcp-gh-pr-reviewer | *N/A* |
+| **Enterprise CRM & Mail** | nextcloud-mcp-gateway, mailru-mcp-server | nextcloud-mcp-control |
+| **Security & Secrets** | agent-vault, mcp-gh-pr-reviewer | agent-vault |
+| **Consensus & Multi-Agent** | google-jules-stitch-gate | google-jules-stitch-gate |
 
 ---
 
 ## Choose Your Upgrade (Onboarding)
 
 You don't need to adopt the entire suite. Choose what fits your needs:
-1. **Need an Orchestrator?** Try our reference implementation: [antigravity-telegram-agent](https://github.com/TheNovaNodes/antigravity-telegram-agent)
-2. **Need a Cloud Worker?** Integrate: [google-jules-mcp](https://github.com/TheNovaNodes/google-jules-mcp)
-3. **Need Tools/Storage?** Spin up one of our MCP gateways or controls (see Repository Groups below) or securely manage credentials with [agent-vault](https://github.com/TheNovaNodes/agent-vault).
+1. **Need an Orchestrator / High-Speed Engine?** Explore: [antigravity-cli-telegram-bot](https://github.com/TheNovaNodes/antigravity-cli-telegram-bot) or [antigravity-telegram-agent](https://github.com/TheNovaNodes/antigravity-telegram-agent).
+2. **Need MCP Multiplexing & Access Control?** Deploy: [mcp-router](https://github.com/TheNovaNodes/mcp-router).
+3. **Need a Cloud Worker?** Integrate: [google-jules-mcp](https://github.com/TheNovaNodes/google-jules-mcp).
+4. **Need Tools, Mail or Storage?** Spin up one of our MCP gateways or controls (see Repository Groups below) or securely manage credentials with [agent-vault](https://github.com/TheNovaNodes/agent-vault).
 
 ---
 
 ## Security Model
 
-TheNovaNodes prioritizes secure access models. Our MCP gateways are designed to be run locally and can be securely tunneled with strict API headers for authentication. This ensures that sensitive internal data planes (such as Nextcloud or AnythingLLM) are not broadly exposed to the public internet, requiring explicit authentication from your agent workers.
+TheNovaNodes prioritizes secure, zero-trust access models.
+- **Credential Isolation:** All API keys and sensitive tokens are managed out-of-process via `agent-vault` (`http://localhost:8301`).
+- **Network Boundaries:** MCP gateways run locally or behind tight API header authentication and ACL rules provided by `mcp-router`.
+- **Auditing:** Code changes and PRs undergo automated verification via `mcp-gh-pr-reviewer`.
 
 ---
 
 ## Repository Groups
 
-### Orchestration & Workers
-- **[antigravity-telegram-agent](https://github.com/TheNovaNodes/antigravity-telegram-agent)**: A reference orchestrator providing a Telegram interface for agent management.
-- **[google-jules-mcp](https://github.com/TheNovaNodes/google-jules-mcp)**: An integration module for Google Jules cloud workers.
-- **[agent-vault](https://github.com/TheNovaNodes/agent-vault)**: Secure credential and secrets management for your agents.
+### Orchestration, Engines & Workers
+- **[antigravity-cli-telegram-bot](https://github.com/TheNovaNodes/antigravity-cli-telegram-bot)**: Pure Go Engine & Python Fallback Layer for Antigravity AI Telegram Agents.
+- **[antigravity-telegram-agent](https://github.com/TheNovaNodes/antigravity-telegram-agent)**: Autonomous Google Antigravity CLI Telegram Agent with PTY Streaming & 6-Pack MCP Matrix.
+- **[google-jules-mcp](https://github.com/TheNovaNodes/google-jules-mcp)**: Integration module for Google Jules cloud workers.
+- **[google-jules-stitch-gate](https://github.com/TheNovaNodes/google-jules-stitch-gate)**: Multi-agent quality gate and consensus cluster.
+
+### Infrastructure & Security
+- **[agent-vault](https://github.com/TheNovaNodes/agent-vault)**: Secure credential and secrets management daemon for AI agents.
+- **[mcp-router](https://github.com/TheNovaNodes/mcp-router)**: High-performance unified MCP Router and Multiplexer with ACL support.
+- **[mcp-gh-pr-reviewer](https://github.com/TheNovaNodes/mcp-gh-pr-reviewer)**: Universal MCP Server for automated GitHub Pull Request security reviews.
 
 ### Semantic Memory
 - **[anythingllm-mcp-gateway](https://github.com/TheNovaNodes/anythingllm-mcp-gateway)**: Connects LLMs to internal knowledge bases.
@@ -116,18 +135,16 @@ TheNovaNodes prioritizes secure access models. Our MCP gateways are designed to 
 - **[searxng-mcp-gateway](https://github.com/TheNovaNodes/searxng-mcp-gateway)**: Privacy-focused web search for real-time agent research.
 - **[searxng-mcp-control](https://github.com/TheNovaNodes/searxng-mcp-control)**: Administers SearXNG settings.
 
-### Enterprise CRM
+### Enterprise CRM & Mail
 - **[nextcloud-mcp-gateway](https://github.com/TheNovaNodes/nextcloud-mcp-gateway)**: Allows agents to read WebDAV, files, and notes.
 - **[nextcloud-mcp-control](https://github.com/TheNovaNodes/nextcloud-mcp-control)**: Manages Nextcloud users and permissions.
-
-### Security & Auditing
-- **[mcp-gh-pr-reviewer](https://github.com/TheNovaNodes/mcp-gh-pr-reviewer)**: Universal Fallback MCP Server for automated GitHub Pull Request security reviews.
+- **[mailru-mcp-server](https://github.com/TheNovaNodes/mailru-mcp-server)**: Stateless MCP server for Mail.ru (IMAP, WebDAV, CardDAV) agentic workflows.
 
 ---
 
 ## Status & Limitations
 - **Modularity:** High. You can use any module independently.
-- **Maturity:** The data plane MCP gateways are verified for production usage; complex orchestrated workflows are experimental.
+- **Maturity:** The data plane MCP gateways, `agent-vault`, and `mcp-router` are verified for production usage; multi-agent consensus loops are experimental.
 - **Limitations:** Certain control plane modules require elevated privileges to the underlying services (e.g., Nextcloud admin credentials), so careful deployment is required.
 
 ---
