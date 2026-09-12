@@ -23,7 +23,7 @@ Instead of a monolithic, one-size-fits-all solution, TheNovaNodes allows develop
 ## Which capabilities are available?
 We offer modular capabilities across key infrastructure domains:
 - **Routing & Access Control**: Unified MCP Router and multiplexer with strict ACL enforcement (`mcp-router`).
-- **Orchestration & High-Speed Engines**: Native Go agent runtimes (`antigravity-go-tg-bot-agent`), Telegram PTY interfaces, and consensus gates (`google-jules-stitch-gate`).
+- **Orchestration & High-Speed Engines**: Native Go agent runtimes (`antigravity-telegram-agent`), Telegram PTY interfaces, and consensus gates (`google-jules-stitch-gate`).
 - **Semantic Memory**: Hybrid search and vector knowledge retrieval via AnythingLLM gateways.
 - **Web Intelligence**: Privacy-focused meta-search and research access via SearXNG.
 - **Enterprise CRM, Mail & Storage**: Full WebDAV, IMAP/CardDAV, and cloud file integration (Nextcloud & Mail.ru MCPs).
@@ -44,7 +44,7 @@ TheNovaNodes uses a decoupled, topology-agnostic architecture. High-performance 
 
 ```mermaid
 flowchart TD
-    Orch[Orchestrator / Engine\n(e.g., antigravity-go-tg-bot-agent)]
+    Orch[Orchestrator / Engine\n(e.g., antigravity-telegram-agent)]
     Router[mcp-router\n(Unified Multiplexer & ACL)]
     Worker[Cloud Workers\n(e.g., google-jules-mcp)]
     Gate[google-jules-stitch-gate\n(Consensus Cluster)]
