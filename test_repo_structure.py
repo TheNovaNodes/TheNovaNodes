@@ -58,3 +58,15 @@ def test_agents_integrity():
     assert "ЗавЛаб" in content, "User title 'ЗавЛаб' must be present in AGENTS.md"
     assert "agent-vault" in content, "Vault directive must be present in AGENTS.md"
     assert "SOUL.md" not in content, "Non-existent SOUL.md must not be referenced in AGENTS.md"
+
+if __name__ == "__main__":
+    test_readme_exists()
+    test_agents_exists()
+    test_contributing_exists()
+    test_license_exists()
+    test_security_exists()
+    test_gitattributes_exists()
+    test_readme_no_phantom_repos()
+    test_readme_verified_public_repos_present()
+    test_agents_integrity()
+    print("ALL TESTS PASS")
