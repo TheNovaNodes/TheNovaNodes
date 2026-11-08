@@ -144,6 +144,24 @@ TheNovaNodes prioritizes secure, zero-trust access models.
 - **Maturity:** Core public MCP gateways, `mcp-router`, `agent-vault`, and `antigravity-telegram-agent` are verified for production usage.
 - **Ecosystem Governance:** Core infrastructure repositories are open source under the MIT License. Enterprise and telemetry products (`fxlab-landing`, `nova-pulse`, `ecosystem-docs`) are maintained under organization governance.
 
+### 🚀 Production Deployment (5-Echelon Automated Gate)
+In accordance with TheNovaNodes ecosystem standards, publication and deployment validation is orchestrated via `./scripts/deploy.sh`:
+
+```bash
+# Execute standard 5-echelon deployment
+./scripts/deploy.sh
+
+# Dry-run validation (validate without writing release manifest)
+./scripts/deploy.sh --dry-run
+```
+
+**Deployment Echelons:**
+1. **🛡️ Échelon 0: Pre-Flight Guard & Rollback Capsule:** Toolchain checks, resolves `TARGET_COMMIT`, and archives existing manifests into `.deploy_rollback_capsule/`.
+2. **🧱 Échelon 1: Production Isolation Probe:** Executes repository structure validation suite (`test_repo_structure.py`) and ensures git working tree cleanliness.
+3. **🔄 Échelon 2: Atomic Switch & Graceful Shift:** Atomically writes deployment manifest with `TARGET_COMMIT` and verified module inventory.
+4. **🪞 Échelon 3: Identity & Truth Probe:** Verifies runtime manifest `commit` matches `git rev-parse HEAD`.
+5. **🔍 Échelon 4: Deep Smoke Probe & Rollback Gate:** Confirms integrity of critical documentation files. Automatic instant rollback (`trap rollback ERR EXIT`) on any anomaly.
+
 ---
 
 ## Support TheNovaNodes
